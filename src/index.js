@@ -11,11 +11,19 @@ import DataTable from './Components/MainTable';
 
 const root = ReactDOMClient.createRoot(document.getElementById("root"));
 
+let productsMock = [
+  [1,'Banana', 'Fruta deliciosa', '20'],
+  [1,'Banana', 'Fruta deliciosa', '20'],
+  [1,'Banana', 'Fruta deliciosa', '20'],
+  [1,'Banana', 'Fruta deliciosa', '20'],
+  [1,'Banana', 'Fruta deliciosa', '20'],
+]
+
 root.render(
   <BrowserRouter>
     <Routes>
     <Route path="/" element={<App />}>
-        <Route path="products" element={<DataTable columns = {['codigo', 'nombre', 'descripcion', 'cantidad']}/>} />
+        <Route path="products" element={<DataTable columns = {['codigo', 'nombre', 'descripcion', 'cantidad']} data = {productsMock}/>}  />
         <Route path="orders" element={<DataTable columns = {['numero', 'nombre cliente', 'id cliente', 'producto', 'fecha']}/>} />
         <Route path="clients" element={<DataTable columns = {['nombre', 'apellido', 'edad', 'genero', 'email']}/>} />
     </Route>

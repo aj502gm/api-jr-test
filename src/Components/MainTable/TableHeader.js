@@ -7,6 +7,7 @@ function TableHeader({columns}) {
     <thead>
         <tr>
             {columns.map((value,index) => <TableHeaderElement columnName = {value} /> )}
+            <TableHeaderElement columnName = {''} />
         </tr>
     </thead>
   )
