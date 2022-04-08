@@ -1,11 +1,16 @@
 import React from 'react'
 import TableBody from './TableBody'
-import TableHeader from './TableHeader'
+import TableHeaderProducts from './TableHeaderP'
+import TableHeaderOrders from './TableHeaderO'
+import TableHeaderClients from './TablerHeaderC'
 
-function DataTable({ columns, data}) {
+function DataTable({data, type}) {
   return (
     <table class="table">
-        <TableHeader columns = {columns}></TableHeader>
+       {
+         (type === 'PRODUCTS')? <TableHeaderProducts /> 
+          : (type === 'ORDERS')? <TableHeaderOrders /> : <TableHeaderClients />
+       }
         <TableBody dataName={data}></TableBody>
     </table>
   )

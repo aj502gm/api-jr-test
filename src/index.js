@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
-import TableHeader from './Components/MainTable/TableHeader';
+import TableHeaderProducts from './Components/MainTable/TableHeaderP';
 import * as ReactDOMClient from 'react-dom/client';
 import DataTable from './Components/MainTable';
 
@@ -23,9 +23,9 @@ root.render(
   <BrowserRouter>
     <Routes>
     <Route path="/" element={<App />}>
-        <Route path="products" element={<DataTable columns = {['codigo', 'nombre', 'descripcion', 'cantidad']} data = {productsMock}/>}  />
-        <Route path="orders" element={<DataTable columns = {['numero', 'nombre cliente', 'id cliente', 'producto', 'fecha']}/>} />
-        <Route path="clients" element={<DataTable columns = {['nombre', 'apellido', 'edad', 'genero', 'email']}/>} />
+        <Route path="products" element={<DataTable data = {productsMock} type = {'PRODUCTS'} />}  />
+        <Route path="orders" element={<DataTable type = {'ORDERS'}/>} />
+        <Route path="clients" element={<DataTable type = {'CLIENTS'}/>} />
     </Route>
     </Routes>
   </BrowserRouter>,
