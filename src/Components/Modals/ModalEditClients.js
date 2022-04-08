@@ -8,26 +8,26 @@ function EditModalC({showEditModal, handleCloseModal}) {
             <Modal.Title>EDIT CLIENTS</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="mb-3">
-                    <label className="form-label">Client Name</label>
-                    <input type="text" class="form-control" placeholder="Client Name..." />
+                <div classNameName="mb-3">
+                    <label classNameName="form-label">Client Name</label>
+                    <input type="text" className="form-control" placeholder="Client Name..." />
+                </div>
+                <div classNameName="mb-3">
+                    <label classNameName="form-label">Client Surname</label>
+                    <input type="text" className="form-control"  placeholder="Client Surname..." />
+                </div>
+                <div classNameName="mb-3">
+                    <label classNameName="form-label">Genre</label>
+                    <input type="text" className="form-control"  placeholder="Genre..." />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Client Surname</label>
-                    <input type="text" class="form-control"  placeholder="Client Surname..." />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Genre</label>
-                    <input type="text" class="form-control"  placeholder="Genre..." />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" placeholder="Email" />
+                    <label for="exampleFormControlInput1" className="form-label">Email address</label>
+                    <input type="email" className="form-control" placeholder="Email" />
                 </div>
             </Modal.Body>
             <Modal.Footer>
-                <button variant="secondary" className='btn btn-warning' onClick={handleCloseModal}>Cancel</button>
-                <button variant="primary" className='btn btn-success'>Confirm Edit</button>
+                <button variant="secondary" classNameName='btn btn-warning' onClick={handleCloseModal}>Cancel</button>
+                <button variant="primary" classNameName='btn btn-success'>Confirm Edit</button>
             </Modal.Footer>
         </Modal>
   )

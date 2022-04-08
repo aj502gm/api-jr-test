@@ -8,7 +8,7 @@ import TableBodyOrders from './TableBodyO'
 
 function DataTable({data, type}) {
   return (
-    <table class="table">
+    <table className="table">
        {
          (type === 'PRODUCTS')? 
               <> 

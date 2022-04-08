@@ -10,14 +10,14 @@ function TableBodyProducts({data}) {
     <tbody>
        
             {data.map((value,index)=>
-             <tr>
+             <tr key = {index}>
                 <td>{value.id}</td>
                 <td>{value.description}</td>
                 <td>{value.name}</td>
                 <td>{value.quantity}</td>
                 <td>
-                  <button type="button" class="btn btn-danger">Delete</button>
-                  <button type="button" class="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
+                  <button type="button" className="btn btn-danger">Delete</button>
+                  <button type="button" className="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
                 </td>
              </tr>)}
              <ModalProducts showEditModal={showEditModal} handleCloseModal={handleCloseModal} />

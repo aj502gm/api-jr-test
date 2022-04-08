@@ -9,14 +9,14 @@ function TableBodyOrders({data}) {
   return (
     <tbody>
             {data.map((value,index)=>
-             <tr>
+             <tr key = {index}>
                 <td>{value.orderID}</td>
                 <td>{value.clientID}</td>
                 <td>{value.clientName}</td>
                 <td>{value.productID}</td>
                 <td>
-                  <button type="button" class="btn btn-danger" >Delete</button>
-                  <button type="button" class="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
+                  <button type="button" className="btn btn-danger" >Delete</button>
+                  <button type="button" className="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
                 </td>
              </tr>)}
              <ModalEditOrders showEditModal={showEditModal} handleCloseModal={handleCloseModal} />
