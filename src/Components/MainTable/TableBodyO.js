@@ -1,10 +1,13 @@
-import React from 'react'
-
+import React, {useState} from 'react'
+import ModalEditOrders from "../Modals/ModalEditOrders"
 
 function TableBodyOrders({data}) {
+    const [showEditModal, setShowEditModal] = useState(false);
+
+    const handleCloseModal = () => setShowEditModal(false);
+    const handleShowModal = () => setShowEditModal(true);
   return (
     <tbody>
-       
             {data.map((value,index)=>
              <tr>
                 <td>{value.orderID}</td>
@@ -12,10 +15,11 @@ function TableBodyOrders({data}) {
                 <td>{value.clientName}</td>
                 <td>{value.productID}</td>
                 <td>
-                  <button type="button" class="btn btn-danger">Danger</button>
-                  <button type="button" class="btn btn-warning">Warning</button>
+                  <button type="button" class="btn btn-danger" >Delete</button>
+                  <button type="button" class="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
                 </td>
              </tr>)}
+             <ModalEditOrders showEditModal={showEditModal} handleCloseModal={handleCloseModal} />
     </tbody>
   )
 }
