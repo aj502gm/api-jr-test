@@ -1,15 +1,25 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import ModalEditClients from '../Modals/ModalEditClients'
 
-function TableBodyClients({data}) {
+function TableBodyClients() {
     const [showEditModal, setShowEditModal] = useState(false);
 
     const handleCloseModal = () => setShowEditModal(false);
     const handleShowModal = () => setShowEditModal(true);
+    const [clientsData, setClientsData] = useState(undefined)
+
+    useEffect(()=>{
+        async function fetchData(){
+          const response = await fetch("http://localhost:5050/clients");
+          setClientsData(await response.json())
+          console.log(clientsData)
+        }
+        fetchData();
+      },[])
   return (
     <tbody>
        
-            {data.map((value,index)=>
+            {clientsData?.map((value,index)=>
              <tr key = {index}>
                 <td>{value.id}</td>
                 <td>{value.name}</td>
