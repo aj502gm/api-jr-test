@@ -6,20 +6,20 @@ import TableBodyProducts from './TableBodyP'
 import TableBodyClients from './TableBodyC'
 import TableBodyOrders from './TableBodyO'
 
-function DataTable({data, type}) {
+function DataTable( {type}) {
   return (
     <table className="table">
        {
          (type === 'PRODUCTS')? 
               <> 
-                <TableHeaderProducts /> <TableBodyProducts data={data} />
+                <TableHeaderProducts /> <TableBodyProducts />
               </>
           : (type === 'ORDERS')? 
               <>
-                <TableHeaderOrders /> <TableBodyOrders data={data} />
+                <TableHeaderOrders /> <TableBodyOrders />
               </> : 
               <>
-                <TableHeaderClients /> <TableBodyClients data={data} />
+                <TableHeaderClients /> <TableBodyClients  />
               </>
        }
     </table>

@@ -81,9 +81,9 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-          <Route path="products" element={<DataTable data = {productsMock} type = {'PRODUCTS'} />}  />
-          <Route path="orders" element={<DataTable data = {ordersMock}  type = {'ORDERS'}/>} />
-          <Route path="clients" element={<DataTable data = {clientsMock}  type = {'CLIENTS'}/>} />
+          <Route path="products" element={<DataTable type = {'PRODUCTS'} />}  />
+          <Route path="orders" element={<DataTable  type = {'ORDERS'}/>} />
+          <Route path="clients" element={<DataTable type = {'CLIENTS'}/>} />
       </Route>
     </Routes>
   </BrowserRouter>,

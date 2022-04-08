@@ -9,6 +9,10 @@ function EditModalP({showEditModal, handleCloseModal}) {
             </Modal.Header>
             <Modal.Body>
                 <div className="mb-3">
+                    <label className="form-label">Edit product: </label>
+                    <input class="form-control" type="text" placeholder="Disabled input" aria-label="Disabled input example" disabled />
+                </div>
+                <div className="mb-3">
                     <label className="form-label">Name</label>
                     <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Name..." />
                 </div>

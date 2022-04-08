@@ -1,14 +1,24 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import ModalEditOrders from "../Modals/ModalEditOrders"
 
-function TableBodyOrders({data}) {
+function TableBodyOrders() {
     const [showEditModal, setShowEditModal] = useState(false);
 
     const handleCloseModal = () => setShowEditModal(false);
     const handleShowModal = () => setShowEditModal(true);
+    const [ordersData, setOrdersData] = useState(undefined)
+
+    useEffect(()=>{
+        async function fetchData(){
+          const response = await fetch("http://localhost:5050/orders");
+          setOrdersData(await response.json())
+          console.log(ordersData)
+        }
+        fetchData();
+      },[])
   return (
     <tbody>
-            {data.map((value,index)=>
+            {ordersData?.map((value,index)=>
              <tr key = {index}>
                 <td>{value.orderID}</td>
                 <td>{value.clientID}</td>
