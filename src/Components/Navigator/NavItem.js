@@ -3,7 +3,7 @@ import { Link, Router } from "react-router-dom";
 
 function NavItem({TabTitle, route}) {
   return (
-    <Link to={route} classNameName='nav-item nav-link active' >
+    <Link to={route} className='nav-item nav-link active' >
            {TabTitle}
     </Link>
   )
