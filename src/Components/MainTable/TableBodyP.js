@@ -28,8 +28,9 @@ function TableBodyProducts() {
                   <button type="button" className="btn btn-danger">Delete</button>
                   <button type="button" className="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
                 </td>
+                { productsData ? <ModalProducts showEditModal={showEditModal} handleCloseModal={handleCloseModal} data = {productsData} position = {index} /> : <></>}
              </tr>)}
-             <ModalProducts showEditModal={showEditModal} handleCloseModal={handleCloseModal} />
+             
     </tbody>
   )
 }
