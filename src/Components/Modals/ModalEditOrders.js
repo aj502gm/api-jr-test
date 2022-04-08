@@ -29,11 +29,11 @@ function EditModalO({showEditModal, handleCloseModal, data, position}) {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Client Name</label>
-                    <input type="text" value = {ordersData?.name} onChange={(e) => setordersData({name:  e.target.value}) } className="form-control" id="exampleFormControlInput1" placeholder="Client Name..." />
+                    <input type="text" value = {ordersData?.name} onChange={(e) => setordersData({...ordersData,name:  e.target.value}) } className="form-control" id="exampleFormControlInput1" placeholder="Client Name..." />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">ProductID</label>
-                    <input type="text" value = {ordersData?.productID} onChange={(e) => setordersData({productID:  e.target.value}) } className="form-control" id="exampleFormControlInput1" placeholder="ProductID..." />
+                    <input type="text" value = {ordersData?.productID} onChange={(e) => setordersData({...ordersData,productID:  e.target.value}) } className="form-control" id="exampleFormControlInput1" placeholder="ProductID..." />
                 </div>
             </Modal.Body>
             <Modal.Footer>
