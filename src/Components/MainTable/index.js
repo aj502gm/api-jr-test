@@ -1,17 +1,27 @@
 import React from 'react'
-import TableBody from './TableBody'
 import TableHeaderProducts from './TableHeaderP'
 import TableHeaderOrders from './TableHeaderO'
 import TableHeaderClients from './TablerHeaderC'
+import TableBodyProducts from './TableBodyP'
+import TableBodyClients from './TableBodyC'
+import TableBodyOrders from './TableBodyO'
 
 function DataTable({data, type}) {
   return (
     <table class="table">
        {
-         (type === 'PRODUCTS')? <TableHeaderProducts /> 
-          : (type === 'ORDERS')? <TableHeaderOrders /> : <TableHeaderClients />
+         (type === 'PRODUCTS')? 
+              <> 
+                <TableHeaderProducts /> <TableBodyProducts data={data} />
+              </>
+          : (type === 'ORDERS')? 
+              <>
+                <TableHeaderOrders /> <TableBodyOrders data={data} />
+              </> : 
+              <>
+                <TableHeaderClients /> <TableBodyClients data={data} />
+              </>
        }
-        <TableBody dataName={data}></TableBody>
     </table>
   )
 }

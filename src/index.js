@@ -11,22 +11,80 @@ import DataTable from './Components/MainTable';
 
 const root = ReactDOMClient.createRoot(document.getElementById("root"));
 
-let productsMock = [
-  [1,'Banana', 'Fruta deliciosa', '20'],
-  [1,'Banana', 'Fruta deliciosa', '20'],
-  [1,'Banana', 'Fruta deliciosa', '20'],
-  [1,'Banana', 'Fruta deliciosa', '20'],
-  [1,'Banana', 'Fruta deliciosa', '20'],
+const productsMock = [
+  {
+    id: 'ajgm502',
+    description: 'Delicious',
+    name: 'Banana',
+    quantity: 5
+  },
+  {
+    id: 'ajgm502',
+    description: 'Delicious',
+    name: 'Banana',
+    quantity: 5
+  },
+  {
+    id: 'ajgm502',
+    description: 'Delicious',
+    name: 'Banana',
+    quantity: 5
+  }
 ]
-
+const clientsMock=[
+  {
+    id: 'juanC',
+    surname: 'Carranza',
+    name: 'Juan',
+    genre: 'M',
+    email: 'jcarranza@gmail.com'
+  },
+  {
+    id: 'juanC',
+    surname: 'Carranza',
+    name: 'Juan',
+    genre: 'M',
+    email: 'jcarranza@gmail.com'
+  },
+  {
+    id: 'juanC',
+    surname: 'Carranza',
+    name: 'Juan',
+    genre: 'M',
+    email: 'jcarranza@gmail.com'
+  }
+]
+const ordersMock = [
+  {
+    id: 'hcdVWbqdMmxk2sNvx7sv',
+    clientID: 'jcarranza',
+    clientName: 'Juan',
+    orderID: '1234JG543',
+    productID: 'ajgm502'
+  },
+  {
+    id: 'hcdVWbqdMmxk2sNvx7sv',
+    clientID: 'jcarranza',
+    clientName: 'Juan',
+    orderID: '1234JG543',
+    productID: 'ajgm502'
+  },
+  {
+    id: 'hcdVWbqdMmxk2sNvx7sv',
+    clientID: 'jcarranza',
+    clientName: 'Juan',
+    orderID: '1234JG543',
+    productID: 'ajgm502'
+  }
+]
 root.render(
   <BrowserRouter>
     <Routes>
-    <Route path="/" element={<App />}>
-        <Route path="products" element={<DataTable data = {productsMock} type = {'PRODUCTS'} />}  />
-        <Route path="orders" element={<DataTable type = {'ORDERS'}/>} />
-        <Route path="clients" element={<DataTable type = {'CLIENTS'}/>} />
-    </Route>
+      <Route path="/" element={<App />}>
+          <Route path="products" element={<DataTable data = {productsMock} type = {'PRODUCTS'} />}  />
+          <Route path="orders" element={<DataTable data = {ordersMock}  type = {'ORDERS'}/>} />
+          <Route path="clients" element={<DataTable data = {clientsMock}  type = {'CLIENTS'}/>} />
+      </Route>
     </Routes>
   </BrowserRouter>,
 );
