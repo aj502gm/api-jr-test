@@ -9,6 +9,20 @@ function EditModalP({showEditModal, handleCloseModal, data, position}) {
     description: "",
     quantity: 0
 })
+ 
+  const handleEditButton = async () => {
+    let response2 = await fetch(`http://localhost:5050/editProduct`,{
+        method: 'PUT',
+        body: productDatta,
+        headers: {'Content-Type': 'application/json',
+        'Accept': 'application/json'}
+      })
+    let body = await response2.json(); 
+    console.log(body.productDatta)
+    //   .then((response)=> await response.json()).then((body)=>{
+    //     console.log(body);
+    //   });
+  }
   
   useEffect(()=>{
       setproductDatta({
@@ -42,7 +56,7 @@ function EditModalP({showEditModal, handleCloseModal, data, position}) {
             </Modal.Body>
             <Modal.Footer>
                 <button variant="secondary" className='btn btn-warning' onClick={handleCloseModal}>Cancel</button>
-                <button variant="primary" className='btn btn-success'>Confirm Edit</button>
+                <button variant="primary" className='btn btn-success' onClick={handleEditButton}>Confirm Edit</button>
             </Modal.Footer>
         </Modal>
   )
