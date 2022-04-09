@@ -11,8 +11,8 @@ function EditModalC({showEditModal, handleCloseModal, data, position}) {
     })
       
       useEffect(()=>{
+          console.log(position)
         setclientsData({
-            
             id: data[position].id, 
             name: data[position].name,
             surname: data[position].surname,
@@ -31,19 +31,19 @@ function EditModalC({showEditModal, handleCloseModal, data, position}) {
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Client Name</label>
-                    <input type="text" value = {clientsData?.name} onChange={(e) => setclientsData({name:  e.target.value}) }  className="form-control" placeholder="Client Name..." />
+                    <input type="text" value = {clientsData?.name} onChange={(e) => setclientsData({...clientsData ,name:  e.target.value}) }  className="form-control" placeholder="Client Name..." />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Client Surname</label>
-                    <input type="text" value = {clientsData?.surname} onChange={(e) => setclientsData({surname:  e.target.value}) } className="form-control"  placeholder="Client Surname..." />
+                    <input type="text" value = {clientsData?.surname} onChange={(e) => setclientsData({...clientsData ,surname:  e.target.value}) } className="form-control"  placeholder="Client Surname..." />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Genre</label>
-                    <input type="text" value = {clientsData?.genre} onChange={(e) => setclientsData({genre:  e.target.value}) } className="form-control"  placeholder="Genre..." />
+                    <input type="text" value = {clientsData?.genre} onChange={(e) => setclientsData({...clientsData ,genre:  e.target.value}) } className="form-control"  placeholder="Genre..." />
                 </div>
                 <div className="mb-3">
                     <label for="exampleFormControlInput1" className="form-label">Email address</label>
-                    <input type="email" value = {clientsData?.email} onChange={(e) => setclientsData({email:  e.target.value}) } className="form-control" placeholder="Email" />
+                    <input type="email" value = {clientsData?.email} onChange={(e) => setclientsData({...clientsData ,email:  e.target.value}) } className="form-control" placeholder="Email" />
                 </div>
             </Modal.Body>
             <Modal.Footer>

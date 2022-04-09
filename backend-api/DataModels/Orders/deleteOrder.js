@@ -1,9 +1,9 @@
 const { db } = require("../../Tools/admin")
-exports.deleteProducts = async (req, res, id) => {
+exports.deleteOrder = async (req, res, id) => {
     console.log(id)
-    const productsRef = db.collection('products');
+    const ordersRef = db.collection('orders');
     try{
-            let docToDelete = productsRef.where('code','==',id);
+            let docToDelete = ordersRef.where('orderID','==',id);
             docToDelete.get().then((qSnap) =>{
                 qSnap.forEach((doc) =>{
                 doc.ref.delete();

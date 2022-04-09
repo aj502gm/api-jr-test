@@ -8,7 +8,7 @@ exports.getProducts = async (req, res) => {
             const data = snapshot.docs.map((doc) => ({id: doc.id, ...doc.data(),}));
             console.log(data);
             return res.status(201).json(data);
-        })
+            })
     } catch (error) {
         return res
         .status(500)

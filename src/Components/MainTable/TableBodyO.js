@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ModalEditOrders from "../Modals/ModalEditOrders"
-
+import TableBodyOElement from "./TableBodyOElement"
 function TableBodyOrders() {
     const [showEditModal, setShowEditModal] = useState(false);
 
@@ -19,17 +19,13 @@ function TableBodyOrders() {
   return (
     <tbody>
             {ordersData?.map((value,index)=>
-             <tr key = {index}>
-                <td>{value.orderID}</td>
-                <td>{value.clientID}</td>
-                <td>{value.clientName}</td>
-                <td>{value.productID}</td>
-                <td>
-                  <button type="button" className="btn btn-danger" >Delete</button>
-                  <button type="button" className="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
-                </td>
-                { ordersData ?<ModalEditOrders showEditModal={showEditModal} handleCloseModal={handleCloseModal} data = {ordersData} position = {index}/>:<></>}
-             </tr>)}
+            <TableBodyOElement 
+                id={value.orderID}
+                name = {value.clientName} 
+                clientID = {value.clientID} 
+                productID= {value.productID} 
+                data={ordersData}
+                position={index} />)}
     </tbody>
   )
 }
