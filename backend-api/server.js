@@ -6,7 +6,6 @@ const {deleteProducts} =require('./DataModels/Products/deleteProducts')
 
 const { getOrders } = require('./DataModels/Orders/getOrders');
 const { getClients } = require('./DataModels/Clients/getClients');
-
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -17,10 +16,9 @@ app.use((req,res,next)=>{
 //PRODUCTS ROUTES
 app.get('/products', getProducts)
 
-app.delete('/deleteProduct/:id', (req,res) =>{
-    let idToDelete = req.params.id
-    console.log(idToDelete)
-   // deleteProducts(id = idToDelete) 
+app.get('/deleteProduct/:id', (req,res) =>{
+    let idToDelete = req.params.id          
+    return deleteProducts(req,res,idToDelete) 
 });
 //ORDERS ROUTES
 app.get('/orders', getOrders);

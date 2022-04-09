@@ -11,6 +11,7 @@ function EditModalC({showEditModal, handleCloseModal, data, position}) {
     })
       
       useEffect(()=>{
+          console.log(position)
         setclientsData({
             id: data[position].id, 
             name: data[position].name,

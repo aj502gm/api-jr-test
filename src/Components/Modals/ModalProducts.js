@@ -12,7 +12,7 @@ function EditModalP({showEditModal, handleCloseModal, data, position}) {
   
   useEffect(()=>{
       setproductDatta({
-        id: data[position].id, 
+        id: data[position].code, 
         name: data[position].name,
         description: data[position].description,
         quantity: data[position].quantity})

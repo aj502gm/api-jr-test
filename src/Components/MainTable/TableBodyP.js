@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ModalProducts from "../Modals/ModalProducts"
-
+import TableBodyPElement from './TableBodyPElement';
 function TableBodyProducts() {
   const [showEditModal, setShowEditModal] = useState(false);
   const handleCloseModal = () => setShowEditModal(false);
@@ -17,20 +17,14 @@ function TableBodyProducts() {
   },[])
   return (
     <tbody>
-       
-            {productsData?.map((value,index)=>
-             <tr key = {index}>
-                <td>{value.id}</td>
-                <td>{value.description}</td>
-                <td>{value.name}</td>
-                <td>{value.quantity}</td>
-                <td>
-                  <button type="button" className="btn btn-danger">Delete</button>
-                  <button type="button" className="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
-                </td>
-                { productsData ? <ModalProducts showEditModal={showEditModal} handleCloseModal={handleCloseModal} data = {productsData} position = {index} /> : <></>}
-             </tr>)}
-             
+            {productsData?.map((value,index)=> 
+            <TableBodyPElement 
+                name = {value.name} 
+                code = {value.code}
+                description = {value.description}
+                quantity={value.quantity}
+                data={productsData}
+                position={index} /> )}
     </tbody>
   )
 }

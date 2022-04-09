@@ -1,11 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import ModalEditClients from '../Modals/ModalEditClients'
-
+import TableBodyCElement from './TableBodyCElement'
 function TableBodyClients() {
-    const [showEditModal, setShowEditModal] = useState(false);
 
-    const handleCloseModal = () => setShowEditModal(false);
-    const handleShowModal = () => setShowEditModal(true);
     const [clientsData, setClientsData] = useState(undefined)
 
     useEffect(()=>{
@@ -18,20 +14,15 @@ function TableBodyClients() {
       },[])
   return (
     <tbody>
-       
-            {clientsData?.map((value,index)=>
-             <tr key = {index}>
-                <td>{value.id}</td>
-                <td>{value.name}</td>
-                <td>{value.surname}</td>
-                <td>{value.genre}</td>
-                <td>{value.email}</td>
-                <td>
-                  <button type="button" className="btn btn-danger">Delete</button>
-                  <button type="button" className="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
-                </td>
-                {clientsData?<ModalEditClients showEditModal={showEditModal} handleCloseModal={handleCloseModal} data = {clientsData} position = {index}/>:<></>}
-             </tr>)}
+            {clientsData?.map((value,index)=> 
+            <TableBodyCElement 
+                name = {value.name} 
+                id = {value.id} 
+                surname = {value.surname} 
+                email = {value.email} 
+                genre={value.genre}
+                data={clientsData}
+                position={index} />)}
     </tbody>
   )
 }
