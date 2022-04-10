@@ -1,19 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useContext,useState, useEffect} from 'react'
 import ModalProducts from "../Modals/ModalProducts"
 import TableBodyPElement from './TableBodyPElement';
-function TableBodyProducts() {
-  const [showEditModal, setShowEditModal] = useState(false);
-  const handleCloseModal = () => setShowEditModal(false);
-  const [productsData, setProductsData] = useState(undefined)
-  const handleShowModal = () => setShowEditModal(true);
+import {APIDataCT} from "../../Context/APIDataCT"
+const TableBodyProducts = () => {  
   
+  const {productsData, getProductData} = useContext(APIDataCT)
   useEffect(()=>{
-    async function fetchData(){
-      const response = await fetch("http://localhost:5050/products");
-      setProductsData(await response.json())
-      console.log(productsData)
-    }
-    fetchData();
+      getProductData()
   },[])
   return (
     <tbody>

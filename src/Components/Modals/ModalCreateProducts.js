@@ -1,24 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import { Modal } from 'react-bootstrap';
-import axios from 'axios';
+import {APIDataCT} from "../../Context/APIDataCT"
 
 function ModalCreateProducts({showEditModal, handleCloseModal}) { 
-  
-  const [productDatta, setproductDatta] = useState({
-    id: "aj54j",
-    name: "Samsung",
-    description: "45 inches",
-    quantity: "15"
-})
-
-  const postData = () => {
-    axios
-    .post('http://localhost:5050/createProduct', productDatta)
-    .then(() => console.log('Book Created'))
-    .catch(err => {
-      console.error(err);
-    });
-  }
+  const {newProductData,setNewProductData,createProductData} = useContext(APIDataCT)
   
   return (
         <Modal show={showEditModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
@@ -28,24 +13,24 @@ function ModalCreateProducts({showEditModal, handleCloseModal}) {
             <Modal.Body>
                 <div className="mb-3">
                     <label className="form-label">Product ID: </label>
-                    <input class="form-control" value = {productDatta?.id} onChange={(e) => setproductDatta({...productDatta,id:  e.target.value}) } type="text" placeholder="Product ID..."  />
+                    <input class="form-control" value = {newProductData?.id} onChange={(e) => setNewProductData({...newProductData,id:  e.target.value}) } type="text" placeholder="Product ID..."  />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Name</label>
-                    <input type="text" value = {productDatta?.name} onChange={(e) => setproductDatta({...productDatta,name:  e.target.value}) } className="form-control" id="exampleFormControlInput1" placeholder="Name..." />
+                    <input type="text" value = {newProductData?.name} onChange={(e) => setNewProductData({...newProductData,name:  e.target.value}) } className="form-control" id="exampleFormControlInput1" placeholder="Name..." />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Description</label>
-                    <input type="text"  value = {productDatta?.description} onChange={(e) => setproductDatta({...productDatta,description:  e.target.value}) }  className="form-control" id="exampleFormControlInput1" placeholder="Description..." />
+                    <input type="text"  value = {newProductData?.description} onChange={(e) => setNewProductData({...newProductData,description:  e.target.value}) }  className="form-control" id="exampleFormControlInput1" placeholder="Description..." />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Quantity</label>
-                    <input type="text"  value = {productDatta?.quantity} onChange={(e) => setproductDatta({...productDatta,quantity:  e.target.value}) }  className="form-control" id="exampleFormControlInput1" placeholder="Quantity..." />
+                    <input type="text"  value = {newProductData?.quantity} onChange={(e) => setNewProductData({...newProductData,quantity:  e.target.value}) }  className="form-control" id="exampleFormControlInput1" placeholder="Quantity..." />
                 </div>
             </Modal.Body>
             <Modal.Footer>
                 <button variant="secondary" className='btn btn-warning' onClick={handleCloseModal}>Cancel</button>
-                <button variant="primary" className='btn btn-success' onClick={postData}>Confirm creation</button>
+                <button variant="primary" className='btn btn-success' onClick={createProductData}>Confirm creation</button>
             </Modal.Footer>
         </Modal>
   )

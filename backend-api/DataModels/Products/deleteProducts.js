@@ -3,7 +3,7 @@ exports.deleteProducts = async (req, res, id) => {
     console.log(id)
     const productsRef = db.collection('products');
     try{
-            let docToDelete = productsRef.where('code','==',id);
+            let docToDelete = productsRef.where('id','==',id);
             docToDelete.get().then((qSnap) =>{
                 qSnap.forEach((doc) =>{
                 doc.ref.delete();

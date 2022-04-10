@@ -1,28 +1,20 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import ModalEditOrders from "../Modals/ModalEditOrders"
 import TableBodyOElement from "./TableBodyOElement"
+import {APIDataCT} from "../../Context/APIDataCT"
+
 function TableBodyOrders() {
-    const [showEditModal, setShowEditModal] = useState(false);
-
-    const handleCloseModal = () => setShowEditModal(false);
-    const handleShowModal = () => setShowEditModal(true);
-    const [ordersData, setOrdersData] = useState(undefined)
-
-    useEffect(()=>{
-        async function fetchData(){
-          const response = await fetch("http://localhost:5050/orders");
-          setOrdersData(await response.json())
-          console.log(ordersData)
-        }
-        fetchData();
-      },[])
+  const {ordersData, getOrdersData} = useContext(APIDataCT)
+  useEffect(()=>{
+      getOrdersData()
+  },[])
   return (
     <tbody>
             {ordersData?.map((value,index)=>
             <TableBodyOElement 
                 id={value.orderID}
                 name = {value.clientName} 
-                clientID = {value.clientID} 
+                clientID = {value.clientId} 
                 productID= {value.productID} 
                 data={ordersData}
                 position={index} />)}
