@@ -13,7 +13,7 @@ function TableBodyCElement({id, name, surname, genre, email, data, position}) {
                 <td>{genre}</td>
                 <td>{email}</td>
                 <td>
-                  <button value = {position} type="button" className="btn btn-warning" onClick={() => handleShowModal()}>Edit</button>
+                  <button value = {position} type="button" className="btn btn-warning me-2" onClick={() => handleShowModal()}>Edit</button>
                 </td>
                 <ModalEditClients showEditModal={showEditModal} handleCloseModal={handleCloseModal} data = {data} position = {position}/>
     </tr>
