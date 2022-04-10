@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Modal } from 'react-bootstrap';
-
+import axios from "axios";
 function ModalCreateClient({showEditModal, handleCloseModal}) {
     const [clientsData, setclientsData] = useState({
         id: "",
@@ -9,6 +9,14 @@ function ModalCreateClient({showEditModal, handleCloseModal}) {
         genre: "",
         email: ""
     })
+    const postData = () => {
+        axios
+        .post('http://localhost:5050/createclient', clientsData)
+        .then(() => console.log('Client Created'))
+        .catch(err => {
+          console.error(err);
+        });
+      }
       
   return (
         <Modal show={showEditModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
@@ -18,7 +26,7 @@ function ModalCreateClient({showEditModal, handleCloseModal}) {
             <Modal.Body>
                 <div className="mb-3">
                     <label className="form-label">Client ID:</label>
-                    <input class="form-control" type="text" placeholder= "Client ID..."  />
+                    <input class="form-control" value = {clientsData?.id} onChange={(e) => setclientsData({...clientsData ,id:  e.target.value}) } type="text" placeholder= "Client ID..."  />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Client Name</label>
@@ -39,7 +47,7 @@ function ModalCreateClient({showEditModal, handleCloseModal}) {
             </Modal.Body>
             <Modal.Footer>
                 <button variant="secondary" className='btn btn-warning' onClick={handleCloseModal}>Cancel</button>
-                <button variant="primary" className='btn btn-success'>Confirm creation</button>
+                <button variant="primary" className='btn btn-success' onClick={postData}>Confirm creation</button>
             </Modal.Footer>
         </Modal>
   )
