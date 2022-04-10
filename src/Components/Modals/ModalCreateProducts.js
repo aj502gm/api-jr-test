@@ -1,30 +1,25 @@
 import React, {useEffect, useState} from 'react'
 import { Modal } from 'react-bootstrap';
+import axios from 'axios';
 
 function ModalCreateProducts({showEditModal, handleCloseModal}) { 
   
   const [productDatta, setproductDatta] = useState({
-    id: "",
-    name: "",
-    description: "",
-    quantity: ""
+    id: "aj54j",
+    name: "Samsung",
+    description: "45 inches",
+    quantity: "15"
 })
- 
-//   const handleEditButton = async () => {
-//     let response2 = await fetch(`http://localhost:5050/editProduct`,{
-//         method: 'PUT',
-//         body: productDatta,
-//         headers: {'Content-Type': 'application/json',
-//         'Accept': 'application/json'}
-//       })
-//     let body = await response2.json(); 
-//     console.log(body.productDatta)
-//     //   .then((response)=> await response.json()).then((body)=>{
-//     //     console.log(body);
-//     //   });
-//   }
-  
 
+  const postData = () => {
+    axios
+    .post('http://localhost:5050/createProduct', productDatta)
+    .then(() => console.log('Book Created'))
+    .catch(err => {
+      console.error(err);
+    });
+  }
+  
   return (
         <Modal show={showEditModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
             <Modal.Header closeButton>
@@ -33,7 +28,7 @@ function ModalCreateProducts({showEditModal, handleCloseModal}) {
             <Modal.Body>
                 <div className="mb-3">
                     <label className="form-label">Product ID: </label>
-                    <input class="form-control" type="text" placeholder="Product ID..."  />
+                    <input class="form-control" value = {productDatta?.id} onChange={(e) => setproductDatta({...productDatta,id:  e.target.value}) } type="text" placeholder="Product ID..."  />
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Name</label>
@@ -50,7 +45,7 @@ function ModalCreateProducts({showEditModal, handleCloseModal}) {
             </Modal.Body>
             <Modal.Footer>
                 <button variant="secondary" className='btn btn-warning' onClick={handleCloseModal}>Cancel</button>
-                <button variant="primary" className='btn btn-success' onClick={()=>{}}>Confirm creation</button>
+                <button variant="primary" className='btn btn-success' onClick={postData}>Confirm creation</button>
             </Modal.Footer>
         </Modal>
   )

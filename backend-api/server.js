@@ -1,14 +1,22 @@
 var express = require('express');
 var app = express();
+
 const PORT = process.env.PORT || 5050
 const bp = require('body-parser')
+//CRUD METHODS 
 const { getProducts } = require('./DataModels/Products/getProducts')
 const {deleteProducts} =require('./DataModels/Products/deleteProducts')
+const {createProduct} = require('./DataModels/Products/createProduct')
 const {deleteOrder} = require('./DataModels/Orders/deleteOrder')
 const {editProduct}  =require('./DataModels/Products/editProduct')
 const { getOrders } = require('./DataModels/Orders/getOrders');
 const { getClients } = require('./DataModels/Clients/getClients');
-const { json } = require('express');
+const {createClient} = require('./DataModels/Clients/createClient')
+const {createOrder} = require('./DataModels/Orders/createOrder')
+//ADD THE 2 LINES BELOW IN ORDER TO ALLOW SOURCE SHARE DOCS
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+//CORS, METHODS ALLOW  
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -23,20 +31,39 @@ app.get('/deleteProduct/:id', (req,res) =>{
     console.log(idToDelete)        
     return deleteProducts(req,res,idToDelete) 
 });
-app.put('/editProduct', (req,res) =>{
-    console.log('vamosss')
+app.post('/editProduct', (req,res) =>{
     console.log(req.body)
     return res.status(201).json({general: "Element received succesfully"});
 });
+app.post('/createProduct', function(req, res) {
+    console.log(req.body);
+
+    return createProduct(req,res,req.body);
+});
+
 //ORDERS ROUTES
 app.get('/orders', getOrders);
 app.get('/deleteOrder/:id', (req,res) =>{
     let idToDelete = req.params.id          
     return deleteOrder(req,res,idToDelete) 
 });
+app.post('/createOrder', function(req, res) {
+    
+    console.log(req.body);
+    return createOrder(req,res,req.body);
+});
 
 //CLIENTS ROUTES
 app.get('/clients', getClients);
+app.post('/createClient', function(req, res) {
+    
+    console.log(req.body);
+    return createClient(req,res,req.body);
+});
+app.post('/editClient', (req,res) =>{
+    console.log(req.body)
+    return res.status(201).json({general: "Client received succesfully"});
+});
 
 app.get('/', (req, res) => {
 res.send('...')

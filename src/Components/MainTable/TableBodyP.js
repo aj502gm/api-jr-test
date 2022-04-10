@@ -20,7 +20,7 @@ function TableBodyProducts() {
             {productsData?.map((value,index)=> 
             <TableBodyPElement 
                 name = {value.name} 
-                code = {value.code}
+                code = {value.id}
                 description = {value.description}
                 quantity={value.quantity}
                 data={productsData}

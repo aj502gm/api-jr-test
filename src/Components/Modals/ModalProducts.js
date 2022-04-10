@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Modal } from 'react-bootstrap';
-
+import axios from "axios"
 function EditModalP({showEditModal, handleCloseModal, data, position}) { 
   
   const [productDatta, setproductDatta] = useState({
@@ -11,17 +11,12 @@ function EditModalP({showEditModal, handleCloseModal, data, position}) {
 })
  
   const handleEditButton = async () => {
-    let response2 = await fetch(`http://localhost:5050/editProduct`,{
-        method: 'PUT',
-        body: productDatta,
-        headers: {'Content-Type': 'application/json',
-        'Accept': 'application/json'}
-      })
-    let body = await response2.json(); 
-    console.log(body.productDatta)
-    //   .then((response)=> await response.json()).then((body)=>{
-    //     console.log(body);
-    //   });
+    axios
+    .post('http://localhost:5050/editProduct', productDatta)
+    .then(() => console.log('Ordered sent to be updated'))
+    .catch(err => {
+      console.error(err);
+    });
   }
   
   useEffect(()=>{
