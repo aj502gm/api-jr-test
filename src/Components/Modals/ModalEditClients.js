@@ -1,7 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { Modal } from 'react-bootstrap';
-import axios from "axios";
+import {APIDataCT} from "../../Context/APIDataCT"
+
 function EditModalC({showEditModal, handleCloseModal, data, position}) {
+    const {updateClientData, setUpdateClientData,UpdateClientDataMethod} = useContext(APIDataCT)
+
     const [clientsData, setclientsData] = useState({
         id: "",
         name: "",
@@ -11,7 +14,7 @@ function EditModalC({showEditModal, handleCloseModal, data, position}) {
     })
       
       useEffect(()=>{
-          console.log(position)
+          console.log(data[position])
         setclientsData({
             id: data[position].id, 
             name: data[position].name,
@@ -19,15 +22,6 @@ function EditModalC({showEditModal, handleCloseModal, data, position}) {
             genre: data[position].genre,
             email: data[position].email})
       },[])
-
-      const postData = () => {
-        axios
-        .post('http://localhost:5050/editClient', clientsData)
-        .then(() => console.log('Data sent'))
-        .catch(err => {
-          console.error(err);
-        });
-      }
   return (
         <Modal show={showEditModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
             <Modal.Header closeButton>
@@ -57,7 +51,7 @@ function EditModalC({showEditModal, handleCloseModal, data, position}) {
             </Modal.Body>
             <Modal.Footer>
                 <button variant="secondary" className='btn btn-warning' onClick={handleCloseModal}>Cancel</button>
-                <button variant="primary" className='btn btn-success' onClick={postData}>Confirm Edit</button>
+                <button variant="primary" className='btn btn-success' onClick={()=>UpdateClientDataMethod(clientsData,position)}>Confirm Edit</button>
             </Modal.Footer>
         </Modal>
   )

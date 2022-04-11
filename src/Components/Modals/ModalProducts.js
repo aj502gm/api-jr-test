@@ -1,27 +1,21 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import { Modal } from 'react-bootstrap';
 import axios from "axios"
+import {APIDataCT} from "../../Context/APIDataCT"
+
 function EditModalP({showEditModal, handleCloseModal, data, position}) { 
-  
+  const {updateProductData,updateProductDataMethod,setUpdateProductData} = useContext(APIDataCT)
+
   const [productDatta, setproductDatta] = useState({
     id: "",
     name: "",
     description: "",
     quantity: 0
 })
- 
-  const handleEditButton = async () => {
-    axios
-    .post('http://localhost:5050/editProduct', productDatta)
-    .then(() => console.log('Ordered sent to be updated'))
-    .catch(err => {
-      console.error(err);
-    });
-  }
   
   useEffect(()=>{
       setproductDatta({
-        id: data[position].code, 
+        id: data[position].id, 
         name: data[position].name,
         description: data[position].description,
         quantity: data[position].quantity})
@@ -51,7 +45,7 @@ function EditModalP({showEditModal, handleCloseModal, data, position}) {
             </Modal.Body>
             <Modal.Footer>
                 <button variant="secondary" className='btn btn-warning' onClick={handleCloseModal}>Cancel</button>
-                <button variant="primary" className='btn btn-success' onClick={handleEditButton}>Confirm Edit</button>
+                <button variant="primary" className='btn btn-success' onClick={() => updateProductDataMethod(productDatta,position)}>Confirm Edit</button>
             </Modal.Footer>
         </Modal>
   )

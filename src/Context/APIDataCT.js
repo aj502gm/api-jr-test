@@ -8,7 +8,7 @@ export const ApiDataProvider = (props) =>{
             const [productsData, setProductsData] = useState([])
         //GET METHOD
             const getProductData = async () => {
-                const response = await fetch("http://localhost:5050/products");
+                const response = await fetch("https://apitestjr.herokuapp.com/products");
                 setProductsData(await response.json())
             }
         //CREATE METHOD STATE + POST METHOD
@@ -20,7 +20,7 @@ export const ApiDataProvider = (props) =>{
             })
             const createProductData = async () => {
                 axios
-                .post('http://localhost:5050/createProduct', newProductData)
+                .post('https://apitestjr.herokuapp.com/createProduct', newProductData)
                 .then(() => setProductsData((prevState) => [...prevState, newProductData]))
                 .catch(err => {
                 console.error(err);
@@ -28,15 +28,37 @@ export const ApiDataProvider = (props) =>{
             }
         //DELETE METHOD
             const deleteProductData = async (position) => {
-                let response2 = await fetch(`http://localhost:5050/deleteProduct/${productsData[position].id}`)
+                let response2 = await fetch(`https://apitestjr.herokuapp.com/deleteProduct/${productsData[position].id}`)
                 setProductsData(productsData.filter(value => value.id  != productsData[position].id))
+            }
+        //UPDATE METHOD STATE + POST (UPDATE) METHOD
+            const [updateProductData, setUpdateProductData] = useState({
+                id: "",
+                name: "",
+                description: "",
+                quantity: 0
+            })
+            const updateProductDataMethod = async (data,position) => {
+                console.log(data);
+                axios
+                .post('https://apitestjr.herokuapp.com/editProduct', data)
+                .then(() => {
+                    console.log('Product sent to be updated')
+                    let newData =[...productsData]
+                    newData[position] = data
+                    console.log(newData);
+                    setProductsData(newData)
+                })
+                .catch(err => {
+                console.error(err);
+                });
             }
     //ORDERS RELATED DATA
         //ORDERS STORE
             const [ordersData, setOrdersData] = useState([])
         //GET METHOD
             const getOrdersData = async () => {
-                const response = await fetch("http://localhost:5050/orders");
+                const response = await fetch("https://apitestjr.herokuapp.com/orders");
                 setOrdersData(await response.json())
             }
         //CREATE METHOD STATE + POST METHOD
@@ -48,7 +70,7 @@ export const ApiDataProvider = (props) =>{
             })
             const createOrderData = async () => {
                 axios
-                .post('http://localhost:5050/createOrder', newOrderData)
+                .post('https://apitestjr.herokuapp.com/createOrder', newOrderData)
                 .then(() => setOrdersData((prevState) => [...prevState, newOrderData]))
                 .catch(err => {
                 console.error(err);
@@ -56,15 +78,38 @@ export const ApiDataProvider = (props) =>{
             }
         //DELETE METHOD
             const deleteOrderData = async (position) => {
-                let response2 = await fetch(`http://localhost:5050/deleteOrder/${ordersData[position].orderID}`)
+                let response2 = await fetch(`https://apitestjr.herokuapp.com/deleteOrder/${ordersData[position].orderID}`)
                 setOrdersData(ordersData.filter(value => value.orderID  != ordersData[position].orderID))
+            }
+        //UPDATE METHOD STATE + POST (UPDATE) METHOD
+            const [updateOrderData, setUpdateOrderData] = useState({
+                orderID: "",
+                clientId: "",
+                clientName: "",
+                productID: "",
+            })
+            const UpdateOrderDataMethod = async (data,position) => {
+                
+                axios
+                .post('https://apitestjr.herokuapp.com/editOrder', data)
+                .then(() => {
+                    console.log('Ordered sent to be updated')
+                    let newData =[...ordersData]
+                    newData[position] = data
+                    console.log(newData);
+                    setOrdersData(newData)
+                })
+                .catch(err => {
+                console.error(err);
+                });
+                //setOrdersData(ordersData.filter(value => value.orderID  != ordersData[position].orderID))
             }
     //CLIENT RELATED DATA
         //CLIENTS STORE
         const [clientsData, setClientsData] = useState([])
         //GET METHOD
             const getClientsData = async () => {
-                const response = await fetch("http://localhost:5050/clients");
+                const response = await fetch("https://apitestjr.herokuapp.com/clients");
                 setClientsData(await response.json())
             }
         //CREATE METHOD STATE + POST METHOD
@@ -77,16 +122,37 @@ export const ApiDataProvider = (props) =>{
             })
             const createClientData = async () => {
                 axios
-                .post('http://localhost:5050/createClient', newClientData)
-                .then(() => clientsData((prevState) => [...prevState, newClientData]))
+                .post('https://apitestjr.herokuapp.com/createClient', newClientData)
+                .then(() => setClientsData  ((prevState) => [...prevState, newClientData]))
                 .catch(err => {
                     console.error(err);
                 });
             }
-
-    //CLIENTS RELATED DATA
+        ////UPDATE METHOD STATE + POST (UPDATE) METHOD
+            const [updateClientData, setUpdateClientData] = useState({
+                id: "",
+                name: "",
+                surname: "",
+                genre: "",
+                email: "",
+            })
+            const UpdateClientDataMethod = async (data,position) => {
+                axios
+                .post('https://apitestjr.herokuapp.com/editClient', data)
+                .then(() => {
+                    let newData =[...clientsData]
+                    newData[position] = data
+                    console.log(newData);
+                    setClientsData(newData)
+                })
+                .catch(err => {
+                console.error(err);
+                });
+                //setOrdersData(ordersData.filter(value => value.orderID  != ordersData[position].orderID))
+            }
+            
     return(
-        <APIDataCT.Provider value = {{productsData,newProductData,setNewProductData,newOrderData,createProductData,ordersData,getOrdersData,createOrderData,setNewOrderData,getProductData,clientsData,getClientsData,newClientData,setNewClientData,createClientData,deleteProductData,deleteOrderData}}>
+        <APIDataCT.Provider value = {{productsData,newProductData,setNewProductData,newOrderData,createProductData,ordersData,getOrdersData,createOrderData,setNewOrderData,getProductData,clientsData,getClientsData,newClientData,setNewClientData,createClientData,deleteProductData,deleteOrderData, updateProductData,updateProductDataMethod,setUpdateProductData,updateOrderData, setUpdateOrderData,UpdateOrderDataMethod,updateClientData, setUpdateClientData,UpdateClientDataMethod}}>
             {props.children}
         </APIDataCT.Provider>
     )

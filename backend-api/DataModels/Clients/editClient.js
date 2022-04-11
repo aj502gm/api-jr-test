@@ -1,13 +1,14 @@
 const { db } = require("../../Tools/admin")
-exports.editProduct = async (req, res, data) => {
+exports.editClient= async (req, res, data) => {
     console.log(data)
-    const productsRef = db.collection('products').doc(data.id);
+    const clientRef = db.collection('clients').doc(data.id);
     try{
-            const udpateData = await productsRef.update({
+            const udpateData = await clientRef.update({
                 id: data.id,
                 name: data.name,
-                description: data.description,
-                quantity: data.quantity,
+                surname: data.surname,
+                genre: data.genre,
+                email: data.email,
             });
 
             return res.status(201).json({general: "Element edited succesfully"});
