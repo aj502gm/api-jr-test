@@ -1,18 +1,21 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import { Modal } from 'react-bootstrap';
+import {APIDataCT} from "../../Context/APIDataCT"
 
 function EditModalO({showEditModal, handleCloseModal, data, position}) {
+    const {updateOrderData, setUpdateOrderData,UpdateOrderDataMethod} = useContext(APIDataCT)
     const [ordersData, setordersData] = useState({
         orderID: "",
-        id: "",
+        clientId: "",
         name: "",
         productID: "",
     })
       
       useEffect(()=>{
+          console.log(data[position])
         setordersData({
             orderID: data[position].id,
-            id: data[position].orderID, 
+            clientId: data[position].clientId,
             name: data[position].clientName,
             productID: data[position].productID})
       },[])
@@ -25,7 +28,11 @@ function EditModalO({showEditModal, handleCloseModal, data, position}) {
                
                 <div className="mb-3">
                     <label className="form-label">Order ID</label>
-                    <input type="text" placeholder={ordersData?.id} className="form-control" id="exampleFormControlInput1"   disabled/>
+                    <input type="text" placeholder={ordersData?.orderID} className="form-control" id="exampleFormControlInput1"   disabled/>
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Client ID</label>
+                    <input type="text" placeholder={ordersData?.clientId} className="form-control" id="exampleFormControlInput1"   disabled/>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Client Name</label>
@@ -38,7 +45,7 @@ function EditModalO({showEditModal, handleCloseModal, data, position}) {
             </Modal.Body>
             <Modal.Footer>
                 <button variant="secondary" className='btn btn-warning' onClick={handleCloseModal}>Cancel</button>
-                <button variant="primary" className='btn btn-success'>Confirm Edit</button>
+                <button variant="primary" className='btn btn-success' onClick = {()=> UpdateOrderDataMethod(ordersData,position)}>Confirm Edit</button>
             </Modal.Footer>
         </Modal>
    )

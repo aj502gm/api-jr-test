@@ -10,8 +10,10 @@ const {createProduct} = require('./DataModels/Products/createProduct')
 const {deleteOrder} = require('./DataModels/Orders/deleteOrder')
 const {editProduct}  =require('./DataModels/Products/editProduct')
 const { getOrders } = require('./DataModels/Orders/getOrders');
+const { editOrder } = require('./DataModels/Orders/editOrder');
 const { getClients } = require('./DataModels/Clients/getClients');
 const {createClient} = require('./DataModels/Clients/createClient')
+const {editClient} = require('./DataModels/Clients/editClient')
 const {createOrder} = require('./DataModels/Orders/createOrder')
 //ADD THE 2 LINES BELOW IN ORDER TO ALLOW SOURCE SHARE DOCS
 app.use(express.json());
@@ -33,14 +35,14 @@ app.get('/deleteProduct/:id', (req,res) =>{
 });
 app.post('/editProduct', (req,res) =>{
     console.log(req.body)
-    return res.status(201).json({general: "Element received succesfully"});
+    return editProduct(req,res,req.body);
 });
 app.post('/createProduct', function(req, res) {
     console.log(req.body);
 
     return createProduct(req,res,req.body);
 });
-
+//--------------------------
 //ORDERS ROUTES
 app.get('/orders', getOrders);
 app.get('/deleteOrder/:id', (req,res) =>{
@@ -52,7 +54,12 @@ app.post('/createOrder', function(req, res) {
     console.log(req.body);
     return createOrder(req,res,req.body);
 });
+app.post('/editOrder', (req,res) =>{
+    console.log(req.body)
+    return editOrder(req,res,req.body);
+});
 
+//--------------------------
 //CLIENTS ROUTES
 app.get('/clients', getClients);
 app.post('/createClient', function(req, res) {
@@ -62,7 +69,7 @@ app.post('/createClient', function(req, res) {
 });
 app.post('/editClient', (req,res) =>{
     console.log(req.body)
-    return res.status(201).json({general: "Client received succesfully"});
+    return editClient(req,res,req.body);
 });
 
 app.get('/', (req, res) => {
