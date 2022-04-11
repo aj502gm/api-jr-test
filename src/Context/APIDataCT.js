@@ -13,10 +13,10 @@ export const ApiDataProvider = (props) =>{
             }
         //CREATE METHOD STATE + POST METHOD
             const [newProductData, setNewProductData] = useState({
-                id: "th94gg",
-                name: "PS4",
-                description: "Slim",
-                quantity: "4"
+                id: "",
+                name: "",
+                description: "",
+                quantity: ""
             })
             const createProductData = async () => {
                 axios
@@ -36,7 +36,7 @@ export const ApiDataProvider = (props) =>{
                 id: "",
                 name: "",
                 description: "",
-                quantity: 0
+                quantity: ''
             })
             const updateProductDataMethod = async (data,position) => {
                 console.log(data);
@@ -63,10 +63,10 @@ export const ApiDataProvider = (props) =>{
             }
         //CREATE METHOD STATE + POST METHOD
             const [newOrderData, setNewOrderData] = useState({
-                orderID: "1234567",
-                clientId: "aGonzalez",
-                clientName: "Andres",
-                productID: "agm43",
+                orderID: "",
+                clientId: "",
+                clientName: "",
+                productID: "",
             })
             const createOrderData = async () => {
                 axios
